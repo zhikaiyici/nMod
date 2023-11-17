@@ -1,0 +1,44 @@
+# Macro file
+# 
+# To be run preferably in batch, without graphics:
+# % nMod run.mac
+#
+#/run/numberOfThreads 4
+/run/initialize
+#
+/control/verbose 2
+/run/verbose 2
+/event/verbose 0
+/tracking/verbose 0
+#
+#############################################
+#
+/score/create/boxMesh boxMesh_1
+#
+/score/mesh/boxSize 1. 1. 1. cm
+/score/mesh/translate/xyz 0. 0. -8.5. cm
+/score/mesh/nBin 1 1 1
+#
+/score/quantity/cellFlux fluence
+/score/filter/particleWithKineticEnergy thermal 0. 0.0253 eV neutron
+#
+/score/close
+#
+#############################################
+#
+# proton 210 MeV to the direction (0.,0.,1.)
+# 1000 events
+#
+#/gun/particle proton
+#/gun/energy 210 MeV
+#
+#/run/beamOn 1000000
+#
+########################################
+#
+# Dump scorers to a file
+#
+/score/dumpQuantityToFile boxMesh_1 fluence fluence.txt
+#
+#
+
